@@ -66,17 +66,17 @@ const VirtualizedList = memo(function VirtualizedList({
   });
 
   const virtualItems = virtualizer.getVirtualItems();
-  const lastItem = virtualItems[virtualItems.length - 1];
+  const lastVirtualIndex = virtualItems[virtualItems.length - 1]?.index;
 
   useEffect(() => {
-    if (!lastItem) return;
+    if (lastVirtualIndex === undefined) return;
 
-    const isNearEnd = lastItem.index >= items.length - OVERSCAN;
+    const isNearEnd = lastVirtualIndex >= items.length - OVERSCAN;
     if (isNearEnd && hasNextPage && !isFetchingNextPage && !isSearchActive) {
       fetchNextPage();
     }
   }, [
-    lastItem?.index,
+    lastVirtualIndex,
     items.length,
     hasNextPage,
     isFetchingNextPage,
@@ -108,7 +108,7 @@ const VirtualizedList = memo(function VirtualizedList({
   }
 
   const firstIndex = virtualItems[0]?.index ?? 0;
-  const lastIndex = lastItem?.index ?? 0;
+  const lastIndex = lastVirtualIndex ?? 0;
 
   return (
     <Box flex={1} minHeight={0} position="relative">

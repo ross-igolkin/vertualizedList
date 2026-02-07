@@ -1,10 +1,34 @@
 # FE Challenge
-Code Ocean Frontend Developer Challenge
 
-## General
+## Running
+```bash
+npm install
+npm start          # json-server on port 5001
+npm run dev        # Vite dev server on port 5000
+```
+
+## Implementation
+
+**Stack:** Vite + React 18 + TypeScript + MUI + TanStack Virtual + TanStack Query + Axios
+
+**What it does:** Two side-by-side virtualized infinite-scroll lists (Users + Reviewers) loading 10K+ items. Only ~10-15 DOM nodes rendered at any time. Debounced search, skeleton loading, error/empty states, responsive mobile tabs.
+
+**Key decisions:**
+- `keepPreviousData` — no UI flash during search
+- `memo` on hot-path components — verified no unnecessary re-renders
+- `display: none` for mobile tabs — preserves scroll position and cache
+- json-server only supports exact, case-sensitive search — documented in code
+
+**Debug mode:** Append `?debug` to the URL (`http://localhost:5000/?debug`) to show a floating panel with virtualization stats (DOM nodes, loaded/total items, visible range, fetch status).
+
+---
+
+## Original Challenge
+
+### General
 In this challenge you will create a React app with a virtualized infinite scroll list.
 
-## Task
+### Task
 1. Clone the repo.
 2. Create a React app with a build system of your choice (e.g. RSPack, Vite, Webpack, etc.).
 3. Implement an infinite scroll (data is lazy loaded) virtualized list component that will load data from the server. You can use a library or create your own implementation.
