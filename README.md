@@ -1,10 +1,14 @@
 # FE Challenge
 
-## Running
+## Getting Started
 ```bash
 npm install
-npm start          # json-server on port 5001
-npm run dev        # Vite dev server on port 5000
+```
+
+Then open **two terminals** and run:
+```bash
+npm start          # API server (port 5001)
+npm run dev        # Frontend dev server (port 5173)
 ```
 
 ## Implementation
